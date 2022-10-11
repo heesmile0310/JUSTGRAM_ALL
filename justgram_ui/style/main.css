@@ -1,0 +1,165 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+header {
+  /* position: fixed; */
+  height: 80px;
+  width: 100%;
+  background-color: white;
+  padding: 25px 100px 25px 100px;
+  border-bottom: 2px solid gainsboro;
+}
+
+.icon {
+  height: 30px;
+  padding-right: 15px;
+}
+
+.left-ico {
+  position: absolute;
+  margin-left: 10%;
+}
+
+/* .just-ico {
+  padding-right: 15px;
+} */
+
+.header-title {
+  display: inline-block;
+  padding-left: 15px;
+  border-left: 3px solid black;
+  font-size: 30px;
+  text-align: center;
+  font-family: "Lobster", cursive;
+  position: absolute;
+  top: -5px;
+}
+
+.header-input {
+  display: inline-block;
+  position: absolute;
+  margin-left: 40%;
+  padding: 15px;
+  width: 350px;
+  height: 30px;
+  text-align: center;
+  background: url(/img/search.png) no-repeat;
+  background-size: 15px;
+  background-position: 140px;
+  background-color: #efefef;
+  border-radius: 3px;
+  border: none;
+}
+
+.right-ico {
+  position: absolute;
+  margin-left: 80%;
+}
+
+/* 게시글 부분 */
+
+.feed-list {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  top: 50px;
+  left: 37%;
+}
+
+.feed-card {
+  width: 700px;
+  border: 1px solid #efefef;
+  background-color: white;
+}
+
+.feed-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+}
+
+.feed-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.feed-header-right {
+  background: url(/img/menu.png) no-repeat;
+  background-size: 20px;
+  width: 30px;
+}
+
+.feed-img-wrap {
+  width: 100%;
+  display: flex;
+  height: 750px;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid #efefef;
+  border-bottom: 1px solid #efefef;
+}
+
+.feed-img1 {
+  max-width: 700px;
+  max-height: 750px;
+}
+
+.feed-menu {
+}
+
+.feed-menu-icon {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  padding-bottom: 0px;
+}
+
+.feed-menu-like {
+  display: flex;
+  padding: 12px;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 0px;
+}
+
+.text-bold {
+  font-weight: bolder;
+}
+
+.feed-comment {
+  padding: 12px;
+  align-items: center;
+  gap: 8px;
+  line-height: 24px;
+}
+
+.feed-comment-card {
+  display: flex;
+  gap: 8px;
+}
+
+.comment-list-input-wrap {
+  display: flex;
+  border-top: 1px solid #efefef;
+}
+
+.feed-comment-input {
+  flex: 1;
+  height: 50px;
+  background-color: white;
+  border: none;
+  padding: 12px;
+  font-size: 16px;
+}
+
+.feed-comment-input-btn {
+  border: none;
+  background-color: white;
+  cursor: pointer;
+  color: #757070;
+}
