@@ -44,10 +44,22 @@ const createUser = (req, res) => {
     email: user.email,
     password: user.password,
   });
-
-  console.log(users);
-
+  // console.log(users);
   res.json({ message: "userCreated" });
+};
+
+const addPost = (req, res) => {
+  const post = req.body.data;
+
+  posts.push({
+    id: post.id,
+    title: post.title,
+    content: post.content,
+    userId: post.userId,
+  });
+
+  console.log(posts);
+  res.json({ message: "postCreated" });
 };
 
 app.get("/", (req, res) => {
@@ -55,6 +67,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/signup", createUser);
+app.post("/addpost", addPost);
 
 const server = http.createServer(app);
 
