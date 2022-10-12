@@ -1,14 +1,14 @@
 const addPost = (req, res) => {
-  const post = req.body.data;
+  const { title, content } = req.body.data;
 
   posts.push({
-    id: post.id,
-    title: post.title,
-    content: post.content,
-    userId: post.userId,
+    id: posts.length + 1,
+    title: title,
+    content: content,
+    userId: 1,
   });
 
-  // console.log(posts);
+  console.log(posts);
   res.json({ message: "postCreated" });
 };
 
