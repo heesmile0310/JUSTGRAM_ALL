@@ -86,7 +86,27 @@ const postList = (req, res) => {
   res.json({ data: newPosts });
 };
 
-// const postChange = (req, res) => {};
+const postChange = (req, res) => {
+  const { title, content } = req.body.data;
+  // console.log(newPosts);
+
+  const changePost = posts.map((post) => {
+    // console.log(post);
+    const user = users.find((user) => post.userId === user.id); //users의 Id 값을 find로 찾아 비교한후 그 값을 user에 저장한다.
+    // console.log(user);
+    if (title === post.title) {
+      //유저정보를 어떻게 가져오는지 헷갈림
+      return {
+        userID: post.userId,
+        userName: user.name,
+        postingId: post.id,
+        postingTitle: title,
+        postingContent: content,
+      };
+    }
+  });
+  res.json({ data: changePost });
+};
 
 app.get("/", (req, res) => {
   res.json({ message: "hi 연결했다 자식아" });
@@ -95,7 +115,7 @@ app.get("/", (req, res) => {
 app.post("/signup", createUser);
 app.post("/addpost", addPost);
 app.get("/postlist", postList);
-// app.patch("/postchange", postChange);
+app.patch("/postchange", postChange);
 
 const server = http.createServer(app);
 
