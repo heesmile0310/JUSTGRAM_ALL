@@ -24,7 +24,25 @@ const posts = [
     id: 2,
     title: "HTTP의 특성",
     content: "Request/Response와 Stateless!!",
-    userId: 1,
+    userId: 2,
+  },
+  {
+    id: 3,
+    title: "고차함수 어렵네",
+    content: "map filter 알아보기",
+    userId: 3,
+  },
+  {
+    id: 4,
+    title: "백엔드도 프론트 다 별로다",
+    content: "뭐해!",
+    userId: 2,
+  },
+  {
+    id: 5,
+    title: "개발조아",
+    content: "Request/Response와 Stateless!!",
+    userId: 2,
   },
 ];
 //-----------------------------------------------------------------------------------------------data
@@ -64,16 +82,16 @@ const addPost = (req, res) => {
   });
 
   // console.log("나는 포스트입니다:" + posts);
-  res.json({ message: "postCreated" });
+  res.statue(201).json({ message: "postCreated" }); //201 생성 성공
 };
 
 const postList = (req, res) => {
   //다른 방식 찾아보기
   //게시글 목록 조회하기 함수
   const newPosts = posts.map((post) => {
-    //배열로 안에 객체로 이루어져서 요소하나씩 map으로 접근한다.
+    //배열안에 객체로 이루어져서 요소하나씩 map으로 접근한다.
     const user = users.find((user) => post.userId === user.id); //users의 Id 값을 find로 찾아 비교한후 그 값을 user에 저장한다.
-    // console.log(user);
+    console.log(user);
     return {
       userID: post.userId,
       userName: user.name,
@@ -87,6 +105,8 @@ const postList = (req, res) => {
 };
 
 const postChange = (req, res) => {
+  // const id = 1;
+
   const { title, content } = req.body.data;
   // console.log(newPosts);
 
@@ -108,6 +128,14 @@ const postChange = (req, res) => {
   res.json({ data: changePost });
 };
 
+const removePost = (req, res) => {
+  const { id, title, content } = req.body.data;
+
+  const findRemovePost = posts.filter((post) => post.id !== id);
+  console.log(findRemovePost);
+  res.json({ message: "postingDeleted" });
+};
+
 app.get("/", (req, res) => {
   res.json({ message: "hi 연결했다 자식아" });
 });
@@ -116,6 +144,7 @@ app.post("/signup", createUser);
 app.post("/addpost", addPost);
 app.get("/postlist", postList);
 app.patch("/postchange", postChange);
+app.delete("/removepost", removePost);
 
 const server = http.createServer(app);
 
