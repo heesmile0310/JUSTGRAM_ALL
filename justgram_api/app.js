@@ -91,7 +91,7 @@ const createUser = (req, res) => {
     password: password,
   });
   // console.log(users);
-  res.json({ message: "userCreated" });
+  res.status(200).json({ message: "userCreated" });
 };
 
 const addPost = (req, res) => {
@@ -125,7 +125,7 @@ const postList = (req, res) => {
     };
   });
 
-  res.json({ data: newPosts });
+  res.status(201).json({ data: newPosts });
 };
 
 const postChange = (req, res) => {
@@ -149,7 +149,7 @@ const postChange = (req, res) => {
       };
     }
   });
-  res.json({ data: changePost });
+  res.status(200).json({ data: changePost });
 };
 
 const removePost = (req, res) => {
@@ -157,7 +157,7 @@ const removePost = (req, res) => {
 
   const findRemovePost = posts.filter((post) => post.id !== id);
   console.log(findRemovePost);
-  res.json({ message: "postingDeleted" });
+  res.status(200).json({ message: "postingDeleted" });
 };
 
 const userPost = (req, res) => {
@@ -174,7 +174,7 @@ const userPost = (req, res) => {
     postings: userPostInfo,
   };
 
-  res.json({ message: "success", data: result });
+  res.status(200).json({ message: "success", data: result });
 };
 
 app.get("/", (req, res) => {
