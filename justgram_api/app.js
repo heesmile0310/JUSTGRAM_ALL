@@ -9,7 +9,25 @@ const users = [
     id: 2,
     name: "Fabian Predovic",
     email: "Connell29@gmail.com",
-    password: "password",
+    password: "123124",
+  },
+  {
+    id: 3,
+    name: "seaya",
+    email: "seaya@gmail.com",
+    password: "2643654",
+  },
+  {
+    id: 4,
+    name: "ian",
+    email: "ian@naver.com",
+    password: "asdfas!!!f",
+  },
+  {
+    id: 5,
+    name: "seonghee",
+    email: "seonghee@gmail.com",
+    password: "psdafds21312",
   },
 ];
 
@@ -36,13 +54,19 @@ const posts = [
     id: 4,
     title: "백엔드도 프론트 다 별로다",
     content: "뭐해!",
-    userId: 2,
+    userId: 5,
   },
   {
     id: 5,
     title: "개발조아",
     content: "Request/Response와 Stateless!!",
-    userId: 2,
+    userId: 4,
+  },
+  {
+    id: 6,
+    title: "데이터센터 화제",
+    content: "라인으로 가즈아!!!",
+    userId: 5,
   },
 ];
 //-----------------------------------------------------------------------------------------------data
@@ -136,6 +160,23 @@ const removePost = (req, res) => {
   res.json({ message: "postingDeleted" });
 };
 
+const userPost = (req, res) => {
+  const { id } = req.body.data;
+
+  const findUser = users.filter((user) => id === user.id);
+  // console.log(findUser);
+
+  const userPostInfo = posts.filter((post) => id === post.userId);
+
+  const result = {
+    userId: id,
+    userName: findUser[0].name,
+    postings: userPostInfo,
+  };
+
+  res.json({ message: "success", data: result });
+};
+
 app.get("/", (req, res) => {
   res.json({ message: "hi 연결했다 자식아" });
 });
@@ -145,6 +186,7 @@ app.post("/addpost", addPost);
 app.get("/postlist", postList);
 app.patch("/postchange", postChange);
 app.delete("/removepost", removePost);
+app.get("/userpostinfo", userPost);
 
 const server = http.createServer(app);
 
