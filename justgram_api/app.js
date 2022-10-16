@@ -153,6 +153,7 @@ const postChange = (req, res) => {
 };
 
 const removePost = (req, res) => {
+  //삭제하고 싶은 포스트를 작성한 id를 req로 받아 Array.filter()로 해당 id를 제외한 나머지 포스트를 findRemovePost에 담는 함수
   const { id, title, content } = req.body.data;
 
   const findRemovePost = posts.filter((post) => post.id !== id);
@@ -161,6 +162,7 @@ const removePost = (req, res) => {
 };
 
 const userPost = (req, res) => {
+  //posts데이터에서 조회하고 싶은 Id로 조회후 데이터를 리턴하는 함수
   const { id } = req.body.data;
 
   const findUser = users.filter((user) => id === user.id);
