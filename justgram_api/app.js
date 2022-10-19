@@ -1,3 +1,23 @@
+const http = require("http");
+const express = require("express");
+const dotenv = require("dotenv");
+dotenv.config();
+
+const { DataSource } = require("typeorm");
+
+const myDataSource = new DataSource({
+  type: process.env.TYPEORM_CONNECTION,
+  host: process.env.TYPEORM_HOST,
+  port: process.env.TYPEORM_PORT,
+  username: process.env.TYPEORM_USERNAME,
+  password: process.env.TYPEORM_PASSWORD,
+  database: process.env.TYPEORM_DATABASE,
+});
+
+myDataSource.initialize().then(() => {
+  console.log("Data Source has been initialized!");
+});
+
 const users = [
   {
     id: 1,
@@ -71,9 +91,6 @@ const posts = [
 ];
 //-----------------------------------------------------------------------------------------------data
 //-----------------------------------------------------------------------------------------------
-
-const http = require("http");
-const express = require("express");
 
 const app = express();
 app.use(express.json()); //req.body undefined 에러 해결(아마 express사용시 발생하는 에러인듯? 전에는 body-parser Install해서 해결한 기억이 있는데 그게 express 업데이트 되면서 express내장 기능으로 추가 된듯)
