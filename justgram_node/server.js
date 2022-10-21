@@ -2,6 +2,8 @@ const http = require("http");
 const express = require("express");
 const dotenv = require("dotenv");
 dotenv.config();
+const bcrypt = require("bcryptjs"); // 암호화 모듈 리콰이어
+const jwt = require("jsonwebtoken"); // 토큰 발급
 
 const { DataSource } = require("typeorm");
 
@@ -71,24 +73,31 @@ const createUser = async (req, res) => {
       throw new Error("Phone number is included in the password");
     }
 
-    //이미 DB에 존재하는 Email로는 가입할 수 없음
-    const mailInfo = await myDataSource.query(
-      `SELECT * FROM users WHERE email = "${email}"`
-    );
-    if (mailInfo) {
-      throw new Error("Can't sign up already exists email");
-    }
+    // //이미 DB에 존재하는 Email로는 가입할 수 없음
+    // const mailInfo = await myDataSource.query(
+    //   `SELECT * FROM users WHERE email = "${email}"`
+    // );
+    // if (mailInfo) {
+    //   throw new Error("Can't sign up already exists email");
+    // }
+
+    const salt = bcrypt.genSaltSync(10);
+
+    const hashedPw = bcrypt.hashSync(password, salt);
 
     const userInfo = await myDataSource.query(
       `INSERT INTO users ( email, nickname, password, profile_image)
       VALUES (
-        "${email}", "${nickname}", "${password}", "${profile_image}"
+        "${email}", "${nickname}", "${hashedPw}", "${profile_image}"
         )`
     );
     res.status(200).json({ message: "userCreated" });
   } catch (err) {
-    console.log(err);
-    res.status(400).json({ message: err.message });
+    if (err.code === "ER_DUP_ENTRY") {
+      res.status(400).json({ message: "Can't sign up already exists email" });
+    } else {
+      res.status(400).json({ message: err.message });
+    }
   }
 };
 
