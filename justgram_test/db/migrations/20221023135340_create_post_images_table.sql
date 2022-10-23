@@ -1,0 +1,13 @@
+-- migrate:up
+CREATE TABLE post_images(
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  post_id INT NOT NULL,
+  image_url VARCHAR(2000) NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (post_id) REFERENCES posts (id)
+);
+
+-- migrate:down
+
+DROP TABLE post_images
