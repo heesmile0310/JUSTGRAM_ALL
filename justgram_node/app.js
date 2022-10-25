@@ -17,20 +17,6 @@ app.use(express.json()); //req.body undefined 에러 해결(아마 express사용
 // app.use(express.urlencoded({ extended: false }));
 
 //read2 문제 한명의 유저가 작성한 게시글 조회 함수 나중에 하기
-const userPost = async (req, res) => {
-  const { id } = req.body.data;
-
-  const listInfo = await myDataSource.query(`SELECT
-  postings.user_id,
-  users.profile_image,
-  posting_images.posting_id,
-  posting_images.image_url,
-  postings.contents
-  FROM users, posting_images
-  INNER JOIN postings ON ${id} = postings.user_id`);
-
-  res.status(201).json({ data: listInfo });
-};
 
 //유저가 작성한 해당 게시물 삭제 함수 CRUD중 DELETE 부분
 
