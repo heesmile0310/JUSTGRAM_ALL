@@ -6,7 +6,7 @@ CREATE TABLE users (
   password VARCHAR(300) NOT NULL,
   profile_image VARCHAR(3000) NULL,
   created_at TIMESTAMP NOT NULL DEFAULT NOW(),
-  PRIMARY KEY (id),
+  PRIMARY KEY (id)
 );
 
 -- migrate:down

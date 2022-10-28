@@ -2,8 +2,10 @@ const createUserService = require("../services/createUserService");
 
 const createUser = async (req, res) => {
   try {
-    const { email, nickname, password, profile_image, phoneNumber } =
-      req.body.data;
+    const { email, password } = req.body;
+    let nickname = "safsdaf";
+    let profile_image = "hsadfsda";
+    let phoneNumber = "010-3335-3252";
 
     const REQUIRED_KEYS = {
       email,

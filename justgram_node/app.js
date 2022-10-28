@@ -3,7 +3,6 @@ const cors = require("cors");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
 dotenv.config();
-const { validateToken } = require("./middlewares/validateToken");
 const router = require("./routes");
 
 const app = express();
@@ -24,3 +23,20 @@ app.get("/", (req, res) => {
 });
 
 module.exports = app;
+
+// const express = require("express");
+
+// const dotenv = require("dotenv");
+// dotenv.config();
+// const router = require("./routes");
+
+// const createApp = () => {
+//   const app = express();
+
+//   app.use(express.json());
+//   app.use(router);
+
+//   return app;
+// };
+
+// module.exports = { createApp };

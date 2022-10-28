@@ -2,7 +2,7 @@ const loginUserService = require("../services/loginUserService");
 
 const loginUser = async (req, res) => {
   try {
-    const { email, password } = req.body.data;
+    const { email, password } = req.body;
     //1. key error check
     //2. email, password validation
     //3. user existence check

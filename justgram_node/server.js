@@ -3,7 +3,7 @@ const https = require("https");
 const fs = require("fs");
 const app = require("./app");
 
-const PORT = 3000;
+const PORT = process.env.PORT;
 
 const options = {
   key: fs.readFileSync("./key.pem", "utf-8"),
@@ -26,3 +26,18 @@ const start = () => {
 };
 
 start();
+
+// require("dotenv").config();
+
+// const { createApp } = require("./app");
+
+// const startServer = async () => {
+//   const app = createApp();
+//   const PORT = process.env.PORT;
+
+//   app.listen(PORT, () => {
+//     console.log(`Listening on Port ${PORT}`);
+//   });
+// };
+
+// startServer();
